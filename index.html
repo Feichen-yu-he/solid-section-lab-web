@@ -4,7 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#f5f7fc" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Set the theme before styles load, avoiding a bright flash on startup.
+      (() => {
+        let preference;
+        try { preference = localStorage.getItem('solid-section-theme'); } catch {}
+        const dark = preference === 'dark' || (preference !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', dark ? '#0f1726' : '#f5f7fc');
+      })();
+    </script>
     <meta name="description" content="选择 12 种立体，调整角度与深度，动态观察三维切割和二维截面。无需账号登录。" />
     <meta name="application-name" content="截面实验室" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -15,8 +26,8 @@
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" sizes="180x180" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <title>截面实验室 · 立体切割动态演示</title>
-    <script type="module" crossorigin src="./assets/index-DLjZXcRn.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-BR42iDrc.css">
+    <script type="module" crossorigin src="./assets/index-B59KHLjJ.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C6tyPytx.css">
   </head>
   <body>
     <div id="root"></div>
